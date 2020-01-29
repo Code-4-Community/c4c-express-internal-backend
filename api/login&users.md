@@ -57,16 +57,12 @@ None.
 Returns a JWT in response header under "Authorization" as "Bearer [token]" and response body as jwt: [token] that expires in 60 minutes.
 
 ```json
-jwt: STRING
+token: STRING
 ```
 
 #### `400 BAD REQUEST`
 
 The request body was malformed according to the specification, the specifics are explained in the response body.
-
-```json
-"Error: ERROR"
-```
 
 ## `POST /logout`
 
@@ -86,17 +82,11 @@ User logged out successfully.
 
 The request body was malformed according to the specification, the specifics are explained in the response body.
 
-```json
-"Error: ERROR"
-```
 
 #### `401 UNAUTHORIZED`
 
 The request does not contain sufficient authorization, the specifics are explained in the response body
 
-```json
-"Error: ERROR"
-```
 
 ## `GET /users`
 

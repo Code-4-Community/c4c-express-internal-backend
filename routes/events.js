@@ -3,6 +3,7 @@ let Event = require("../models/event.model");
 let User = require("../models/user.model");
 
 const authenticate = require("../middleware/auth");
+const removeHashedPassword = "-hashedPassword";
 
 //Gets all events
 //public
@@ -80,15 +81,16 @@ router.route("/checkin/:code").post(authenticate(0), function(req, res, next) {
   Event.findOne({ eventCode: req.params.code })
     .then(event => {
       if (!event.isOpen) throw "event is not open for check in";
-      console.log(req.token.user_id);
+      if (event.attendees.includes(req.token.user_id))
+        throw "user is already checked in";
       event.attendees.push(req.token.user_id);
       event
         .save()
         .then(event => {
           let userList = [];
           for (userId in event.attendees) {
-            User.findById(userId)
-              .then(user => userList.push(event))
+            User.findById(userId, removeHashedPassword)
+              .then(user => userList.push(user))
               .catch(err => res.status(400).json({ error: err }));
           }
           event.attendees = userList;

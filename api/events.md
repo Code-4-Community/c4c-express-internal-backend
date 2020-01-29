@@ -21,10 +21,11 @@ Returns the list of events as a JSON array
     "eventDate": DATE,
     "eventCode": STRING,
     "isOpen": BOOLEAN,
+    "imageUrl": STRING,
+    "attendees": [USER],
     "createdAt": DATE,
     "updatedAt": DATE,
-    "__v": INTEGER,
-    "attendees": [STRING]
+    "__v": INTEGER
   }
 ]
 ```
@@ -63,10 +64,11 @@ Returns the a JSON object representing an event
   "eventDate": DATE,
   "eventCode": STRING,
   "isOpen": BOOLEAN,
+  "imageUrl": STRING,
+  "attendees": [USER],
   "createdAt": DATE,
   "updatedAt": DATE,
-  "__v": INTEGER,
-  "attendees": [STRING]
+  "__v": INTEGER
 }
 ```
 
@@ -98,7 +100,8 @@ Requires privilege level 1.
   "description": STRING,
   "eventDate": DATE,
   "eventCode": STRING,
-  "isOpen": BOOLEAN
+  "isOpen": BOOLEAN,
+  "imageUrl": STRING
 }
 ```
 
@@ -109,7 +112,24 @@ Example: new Date().toJSON() -> "2020-01-17T03:25:49.315Z"
 
 #### `201 OK`
 
-Event was successfully added to the database.
+Returns the event posted to the database.
+
+```json
+{
+  "_id": STRING,
+  "title": STRING,
+  "subtitle": STRING,
+  "description": STRING,
+  "eventDate": DATE,
+  "eventCode": STRING,
+  "isOpen": BOOLEAN,
+  "imageUrl": STRING,
+  "attendees": [USER],
+  "createdAt": DATE,
+  "updatedAt": DATE,
+  "__v": INTEGER
+}
+```
 
 #### `400 BAD REQUEST`
 
@@ -144,7 +164,8 @@ Requires privilege level 1.
   "description": STRING,
   "eventDate": DATE,
   "eventCode": STRING,
-  "isOpen": BOOLEAN
+  "isOpen": BOOLEAN,
+  "imageUrl": STRING
 }
 ```
 
@@ -155,7 +176,24 @@ Example: new Date().toJSON() -> "2020-01-17T03:25:49.315Z"
 
 #### `201 OK`
 
-Event was successfully updated and saved to the database.
+Returns the event updated in database.
+
+```json
+{
+  "_id": STRING,
+  "title": STRING,
+  "subtitle": STRING,
+  "description": STRING,
+  "eventDate": DATE,
+  "eventCode": STRING,
+  "isOpen": BOOLEAN,
+  "imageUrl": STRING,
+  "attendees": [USER],
+  "createdAt": DATE,
+  "updatedAt": DATE,
+  "__v": INTEGER
+}
+```
 
 #### `400 BAD REQUEST`
 
@@ -185,7 +223,24 @@ None.
 
 #### `200 OK`
 
-Event was successfully deleted from the database.
+Returns the event just before it was deleted from the database.
+
+```json
+{
+  "_id": STRING,
+  "title": STRING,
+  "subtitle": STRING,
+  "description": STRING,
+  "eventDate": DATE,
+  "eventCode": STRING,
+  "isOpen": BOOLEAN,
+  "imageUrl": STRING,
+  "attendees": [USER],
+  "createdAt": DATE,
+  "updatedAt": DATE,
+  "__v": INTEGER
+}
+```
 
 #### `400 BAD REQUEST`
 
@@ -215,7 +270,24 @@ Requires privilege level 0.
 
 #### `200 OK`
 
-User was successfully checked in to the event
+Returns the event with the new attendee in the databse
+
+```json
+{
+  "_id": STRING,
+  "title": STRING,
+  "subtitle": STRING,
+  "description": STRING,
+  "eventDate": DATE,
+  "eventCode": STRING,
+  "isOpen": BOOLEAN,
+  "imageUrl": STRING,
+  "attendees": [USER],
+  "createdAt": DATE,
+  "updatedAt": DATE,
+  "__v": INTEGER
+}
+```
 
 #### `400 BAD REQUEST`
 
