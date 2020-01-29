@@ -57,7 +57,8 @@ Returns the a JSON object representing an event
 ```json
 {
   "_id": STRING,
-  "name": STRING,
+  "title": STRING,
+  "subtitle": STRING,
   "description": STRING,
   "eventDate": DATE,
   "eventCode": STRING,
@@ -92,7 +93,8 @@ Requires privilege level 1.
 
 ```json
 {
-  "name": STRING,
+  "title": STRING,
+  "subtitle": STRING,
   "description": STRING,
   "eventDate": DATE,
   "eventCode": STRING,
@@ -137,7 +139,8 @@ Requires privilege level 1.
 
 ```json
 {
-  "name": STRING,
+  "title": STRING,
+  "subtitle": STRING,
   "description": STRING,
   "eventDate": DATE,
   "eventCode": STRING,

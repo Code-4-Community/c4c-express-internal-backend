@@ -15,20 +15,21 @@ function authenticate(requiredPrivilegeLevel) {
     } catch (err) {
       return res
         .status(401)
-        .json(
-          "Error: Malformed Authorization header. Token should be sent under Authorization as Bearer <token>"
-        );
+        .json({
+          error:
+            "Malformed Authorization header. Token should be sent under Authorization as Bearer <token>"
+        });
     }
 
     jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
-      if (err) return res.status(401).json("Error: " + err);
+      if (err) return res.status(401).json({ error: err });
       if (tokenCache.has(decoded.jti))
-        return res.status(401).json("Error: blacklisted token");
+        return res.status(401).json({ error: "blacklisted token" });
 
       if (decoded.privilege_level < requiredPrivilegeLevel)
         return res
           .status(401)
-          .json("Error: insufficent privilege to access this resource");
+          .json({ error: "insufficent privilege to access this resource" });
       req.token = decoded;
       next();
     });

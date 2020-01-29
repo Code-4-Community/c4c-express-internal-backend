@@ -18,15 +18,16 @@ router.route("/login").post((req, res) => {
     { email: email },
     "hashedPassword privilegeLevel",
     (err, user) => {
-      if (err) return res.status(400).json("Error: " + err);
+      if (err) return res.status(400).json({ error: err });
 
       const hashedPassword = user.hashedPassword;
       const userId = user._id;
       const privilegeLevel = user.privilegeLevel;
 
       bcrypt.compare(plaintextPassword, hashedPassword, (err, isValid) => {
-        if (err) return res.status(400).json("Error: " + err);
-        if (!isValid) return res.status(401).json("Error: Incorrect password");
+        if (err) return res.status(400).json({ error: err });
+        if (!isValid)
+          return res.status(401).json({ error: "incorrect password" });
 
         // jti is a short cryptographically random string to id the token
         const jti = crypto.randomBytes(16).toString("hex");
@@ -41,7 +42,7 @@ router.route("/login").post((req, res) => {
         );
 
         res.setHeader("Authentication", `Bearer ${token}`);
-        res.status(201).json("jwt: " + token);
+        res.status(200).json({ token }); // Is this a security concern?
       });
     }
   );
@@ -68,18 +69,20 @@ router.route("/signup").post((req, res) => {
 
     newUser
       .save()
-      .then(() => res.json("User added!"))
-      .catch(err => res.status(400).json("Error: " + err));
+      .then(user => {
+        delete user.hashedPassword;
+        res.status(201).json(user);
+      })
+      .catch(err => res.status(400).json({ error: err }));
   });
 });
 
 // Blacklists JWT
 router.route("/logout").post(authenticate(0), function(req, res) {
-  console.log("logging out");
   const nowInSeconds = Math.round(Date.now() / 1000);
   //blacklisted tokens are stored in the tokenCache keyed by jti, which automatically cleans expired tokens every 10 min
   tokenCache.set(req.token.jti, "", req.token.exp - nowInSeconds);
-  res.status(201).json("Logged out successfully!");
+  res.status(200).json("Logged out successfully!");
 });
 
 module.exports = router;

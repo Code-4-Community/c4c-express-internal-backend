@@ -3,6 +3,8 @@ cors = require("cors");
 https = require("https");
 fs = require("fs");
 mongoose = require("mongoose");
+helmet = require("helmet");
+rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
 const NodeCache = require("node-cache");
@@ -16,11 +18,23 @@ const sslOptions = {
   cert: fs.readFileSync("cert.pem"),
   passphrase: process.env.SSL_PASSPHRASE
 };
+if (process.env.HEROKU == "true") {
+  app.set("trust proxy", 1);
+}
+
+//https://i.redd.it/nu8nm8h1bvc41.jpg
+const limiter = rateLimit({
+  windowMs: 1000, // 1 second
+  max: 5 // limit each IP to 5 requests per windowMs
+});
+
 const apiDocsLink =
   "https://github.com/rymaju/c4c-express-internal-backend/blob/master/api.md";
 
-app.use(cors()); // Here we can whitelist our frontend
+app.use(cors()); // Here we protect against XSS by whitelisting origins
+app.use(helmet()); // helmet is a medley of security middleware to better protect our app
 app.use(express.json()); // Built in body-parser for reading request JSON bodies
+app.use(limiter); //  apply to all requests IF we ever host with express.static(), for example statically hosting the FE
 
 // connect to the db
 mongoose.connect(uri, {
