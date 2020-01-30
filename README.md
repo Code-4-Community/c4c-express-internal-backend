@@ -85,3 +85,7 @@ The organization and principles of this project are guided by:
 3. [StandardJS Style](https://standardjs.com/#why-should-i-use-javascript-standard-style)
 
 It is reccomended that you install prettier-standard on VSCode or an equivalent on your IDE.
+
+## Submitting a Pull Request
+
+Before submitting your request, make sure that you pass the style check by running `npm run format` and fixing any errors that pop up.
