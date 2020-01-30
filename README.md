@@ -7,7 +7,7 @@ Making this in Express and with MongoDB has a few key benefits that make backend
 ### Benefits
 
 - npm packages help abstract complex behavior and reduce code bloat in this repo
-- on the same note, writing in Javascript with npm packages allows you to quickly write more with less. This *entire* backend is just **386** lines of Javascript. For comparsion *just* the apiRouter in the Vertx backend is over **1000** lines of Java. (for a more in depth comparision of the sheer bloat of the Java backend see [bloat.md](bloat.md)) 
+- on the same note, writing in Javascript with npm packages allows you to quickly write more with less. This _entire_ backend is just **386** lines of Javascript. For comparsion _just_ the apiRouter in the Vertx backend is over **1000** lines of Java. (for a more in depth comparision of the sheer bloat of the Java backend see [bloat.md](bloat.md))
 - running with node and nodemon means that there is essentially **no** compile time. You are never wasting time waiting to see your changes which was a really annoying issue with the Vertx version.
 - Javascript becomes the language for frontend and backend, collaboration could become easier as well as standardizing testing to one Javascript library
 - MongoDB/Mongoose has easier to read schemas and is super simple to set up, you dont need to download any local database software just run `npm start` and it will connect to MongoDB Atlas automatically.
@@ -34,6 +34,7 @@ Create new local SSL certificates with this command:
 ```sh
 openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 1000
 ```
+
 You will be prompted for some information, but the only thing that matters is the passphrase you set. Remember it.
 
 It will then generate two files: cert.pem and key.pem, which are needed for HTTPS. Chrome and other browsers will give a warning when you connect, but it can be ignored.
@@ -66,3 +67,21 @@ npm start
 The difference is that `npm run dev` uses nodemon to automatically restart the server when changes are detected, very useful for development.
 
 The API will be live at `https://localhost:8443`
+
+Additionally for formatting and linting you can use
+
+```sh
+npm run format
+```
+
+## Development Standards
+
+The organization and principles of this project are guided by:
+
+1. [Express Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html)
+
+2. [NodeJS Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+
+3. [StandardJS Style](https://standardjs.com/#why-should-i-use-javascript-standard-style)
+
+It is reccomended that you install prettier-standard on VSCode or an equivalent on your IDE.

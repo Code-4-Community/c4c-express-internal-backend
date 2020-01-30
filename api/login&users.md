@@ -82,11 +82,9 @@ User logged out successfully.
 
 The request body was malformed according to the specification, the specifics are explained in the response body.
 
-
 #### `401 UNAUTHORIZED`
 
 The request does not contain sufficient authorization, the specifics are explained in the response body
-
 
 ## `GET /users`
 

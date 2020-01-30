@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
-const ObjectId = mongoose.Schema.Types.ObjectId;
+const Schema = mongoose.Schema
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 const eventSchema = new Schema(
   {
@@ -13,13 +13,12 @@ const eventSchema = new Schema(
     isOpen: { type: Boolean, required: true },
     attendees: { type: [ObjectId], default: [] },
     imageUrl: { type: String, required: true }
-
   },
   {
     timestamps: true
   }
-);
+)
 
-const Event = mongoose.model("Event", eventSchema);
+const Event = mongoose.model('Event', eventSchema)
 
-module.exports = Event;
+module.exports = Event
