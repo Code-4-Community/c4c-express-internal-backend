@@ -7,7 +7,7 @@ Making this in Express and with MongoDB has a few key benefits that make backend
 ### Benefits
 
 - npm packages help abstract complex behavior and reduce code bloat in this repo
-- on the same note, writing in Javascript with npm packages allows you to quickly write more with less. This _entire_ backend is just **386** lines of Javascript. For comparsion _just_ the apiRouter in the Vertx backend is over **1000** lines of Java. (for a more in depth comparision of the sheer bloat of the Java backend see [bloat.md](bloat.md))
+- on the same note, writing in Javascript with npm packages allows you to quickly write more with less. This _entire_ backend is just around _500~_ lines of Javascript. For comparsion _just_ the Vertx backend is **2000~** lines of Java. (for a more in depth comparision of the sheer bloat of the Java backend see [bloat.md](bloat.md))
 - running with node and nodemon means that there is essentially **no** compile time. You are never wasting time waiting to see your changes which was a really annoying issue with the Vertx version.
 - Javascript becomes the language for frontend and backend, collaboration could become easier as well as standardizing testing to one Javascript library
 - MongoDB/Mongoose has easier to read schemas and is super simple to set up, you dont need to download any local database software just run `npm start` and it will connect to MongoDB Atlas automatically.
