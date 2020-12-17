@@ -30,11 +30,14 @@
     "https": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.7",
-    "node-cache": "^5.1.0"
+    "node-cache": "^5.1.0",
+    "pg": "^8.5.1",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2",
-    "prettier-standard": "^16.1.0",
+    "prettier-standard": "^16.4.1",
     "standard": "^14.3.1"
   }
 }
